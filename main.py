@@ -2,13 +2,12 @@ import tornado.ioloop
 import tornado.web
 from tornado.httpclient import AsyncHTTPClient, HTTPRequest
 from tornado import gen
-from rauth import OAuth1Service
 import json
 
 class MainHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
-        url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=<INSERT KEY HERE>"
+        url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA"
         response = yield gen.Task(
             AsyncHTTPClient().fetch,url)
 
@@ -82,5 +81,5 @@ routes = [
 
 application = tornado.web.Application(routes)
 if __name__ == "__main__":
-    application.listen(8888)
+    application.listen(8000)
     tornado.ioloop.IOLoop.instance().start()
