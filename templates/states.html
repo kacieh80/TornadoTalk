@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>Australian DHS Organized by State</h1>
+{% end %}
+
+{% block content %}
+<h2>New South Wales (NSW)</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Hours</th>
+    <th>Type</th>
+  </tr>
+  
+ {% for location in nsw %}
+    {% include info_row.html %}
+ {% end %}
+</table>
+
+<br>
+
+<h2>Queensland (QLD)</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Hours</th>
+    <th>Type</th>
+  </tr>
+  
+ {% for location in qld %}
+    {% include info_row.html %}
+ {% end %}
+</table>
+
+<br>
+
+<h2>Australian Capital Territory (ACT)</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Hours</th>
+    <th>Type</th>
+  </tr>
+  
+ {% for location in act %}
+    {% include info_row.html %}
+ {% end %}
+</table>
+
+<br>
+
+<h2>Victoria (VIC)</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Hours</th>
+    <th>Type</th>
+  </tr>
+  
+ {% for location in vic %}
+    {% include info_row.html %}
+ {% end %}
+</table>
+
+<br>
+
+<h2>Tasmania (TAS)</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Hours</th>
+    <th>Type</th>
+  </tr>
+  
+ {% for location in tas %}
+    {% include info_row.html %}
+ {% end %}
+</table>
+
+<br>
+
+<h2>South Australia (SA)</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Hours</th>
+    <th>Type</th>
+  </tr>
+  
+ {% for location in sa %}
+    {% include info_row.html %}
+ {% end %}
+</table>
+
+{% end %}
+
+{% block footer %}
+  <p>Simple asynchronous project written by Kacie Houser using Python Tornado Web Framework </p>
+{% end %}

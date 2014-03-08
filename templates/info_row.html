@@ -1,0 +1,18 @@
+{% if "properties" in location %}
+    <tr>
+        <td>{{ location["properties"]["Fcilty_nam"] }}</td>
+        <td>
+            {{ location["properties"]["Shp_num_an"] }} {{ location["properties"]["Shp_centre"] }}</br>
+            {{ location["properties"]["Street_add"] }}</br>
+            {{ location["properties"]["Locality"] }}, {{ location["properties"]["State"] }}</br>
+            {{ location["properties"]["Postcode"] }}
+
+        </td>
+        <td>{{ location["properties"]["Hrs_of_bus"] }}</td>
+        <td>{{ location["properties"]["Fcilty_typ"] }}</td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="4">{{location["message"]}}</td>
+    </tr>
+{% end %}

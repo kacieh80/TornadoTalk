@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1>Australian Department of Human Services</h1>
+{% end %}
+
+{% block content %}
+    <a href="states">View Organized by State</a> 
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Hours</th>
+            <th>Type</th>
+        </tr>
+    
+        {% for location in all_locations %}
+            {% include info_row.html %}
+        {% end %}
+    </table>
+{% end %}
+
+{% block footer %}
+    <p>Simple asynchronous project written by Kacie Houser using Python Tornado Web Framework </p>
+{% end %}
