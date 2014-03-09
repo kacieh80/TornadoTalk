@@ -19,9 +19,10 @@ class MainHandler(tornado.web.RequestHandler):
         clean_response = CleanResponse().scrub_it(response)
 
         self.render("templates/main.html", 
-                    all_locations=clean_response)  
+                    all_locations=clean_response)
 
-class StateHandler(tornado.web.RequestHandler):
+
+class StatesHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
         clean_obj = CleanResponse()
@@ -74,7 +75,30 @@ class StateHandler(tornado.web.RequestHandler):
                     act=act,
                     vic=vic,
                     tas=tas,
-                    sa=sa)   
+                    sa=sa)  
+
+
+class StateHandler(tornado.web.RequestHandler):
+    @gen.coroutine
+    def get(self, abbv):
+        states = {
+            "NSW": "New South Whales", 
+            "QLD": "Queensland", 
+            "ACT": "Australian Capital Territory", 
+            "VIC": "Victoria", 
+            "TAS": "Tasmania", 
+            "SA": "South Australia"
+        }
+        st = abbv.upper()
+        url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='{1}'".format(api_key, st)
+        response = yield gen.Task(
+            AsyncHTTPClient().fetch,url)
+
+        clean_response = CleanResponse().scrub_it(response)
+
+        self.render("templates/single_state.html", 
+                    locations=clean_response,
+                    name=states[st])
 
 
 class CleanResponse(object):
@@ -89,9 +113,9 @@ class CleanResponse(object):
 
 routes = [
     (r"/", MainHandler),
-    (r"/states", StateHandler),
+    (r"/states", StatesHandler),
+    (r"/state/(.*)", StateHandler)
 ]
-
 
 application = tornado.web.Application(routes)
 if __name__ == "__main__":
