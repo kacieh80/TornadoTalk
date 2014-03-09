@@ -20,37 +20,38 @@ class StateHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
         clean_obj = CleanResponse()
+        async_client = AsyncHTTPClient()
         nsw_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='NSW'"
         raw_nsw = yield gen.Task(
-            AsyncHTTPClient().fetch,nsw_url)
+            async_client.fetch,nsw_url)
         
         nsw = clean_obj.scrub_it(raw_nsw)
 
         qld_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='QLD'"
         raw_qld = yield gen.Task(
-            AsyncHTTPClient().fetch,qld_url)
+            async_client.fetch,qld_url)
 
         qld = clean_obj.scrub_it(raw_qld)
         act_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='ACT'"
         raw_act = yield gen.Task(
-            AsyncHTTPClient().fetch,act_url)
+            async_client.fetch,act_url)
 
         act = clean_obj.scrub_it(raw_act)
 
         vic_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='VIC'"
         raw_vic = yield gen.Task(
-            AsyncHTTPClient().fetch,vic_url)
+            async_client.fetch,vic_url)
 
         vic = clean_obj.scrub_it(raw_vic)
         tas_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='TAS'"
         raw_tas = yield gen.Task(
-            AsyncHTTPClient().fetch,tas_url)
+            async_client.fetch,tas_url)
 
         tas = clean_obj.scrub_it(raw_tas)
 
         sa_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='SA'"
         raw_sa = yield gen.Task(
-            AsyncHTTPClient().fetch,sa_url) 
+            async_client.fetch,sa_url) 
 
         sa = clean_obj.scrub_it(raw_sa) 
 
