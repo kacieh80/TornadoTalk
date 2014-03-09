@@ -1,13 +1,18 @@
 import tornado.ioloop
 import tornado.web
-from tornado.httpclient import AsyncHTTPClient, HTTPRequest
+from tornado.httpclient import AsyncHTTPClient
 from tornado import gen
 import json
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+api_key = "AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA"
 
 class MainHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
-        url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA"
+        url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}".format(api_key)
         response = yield gen.Task(
             AsyncHTTPClient().fetch,url)
 
@@ -21,35 +26,43 @@ class StateHandler(tornado.web.RequestHandler):
     def get(self):
         clean_obj = CleanResponse()
         async_client = AsyncHTTPClient()
-        nsw_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='NSW'"
+        nsw_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='NSW'".format(api_key)
+        logger.info("Getting NSW")
         raw_nsw = yield gen.Task(
             async_client.fetch,nsw_url)
         
         nsw = clean_obj.scrub_it(raw_nsw)
 
-        qld_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='QLD'"
+        qld_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='QLD'".format(api_key)
+        logger.info("Getting QLD")
         raw_qld = yield gen.Task(
             async_client.fetch,qld_url)
 
         qld = clean_obj.scrub_it(raw_qld)
-        act_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='ACT'"
+        
+        act_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='ACT'".format(api_key)
+        logger.info("Getting ACT")
         raw_act = yield gen.Task(
             async_client.fetch,act_url)
 
         act = clean_obj.scrub_it(raw_act)
 
-        vic_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='VIC'"
+        vic_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='VIC'".format(api_key)
+        logger.info("Getting VIC")
         raw_vic = yield gen.Task(
             async_client.fetch,vic_url)
 
         vic = clean_obj.scrub_it(raw_vic)
-        tas_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='TAS'"
+        
+        tas_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='TAS'".format(api_key)
+        logger.info("Getting TAS")
         raw_tas = yield gen.Task(
             async_client.fetch,tas_url)
 
         tas = clean_obj.scrub_it(raw_tas)
 
-        sa_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key=AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA&where=State='SA'"
+        sa_url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='SA'".format(api_key)
+        logger.info("Getting SA")
         raw_sa = yield gen.Task(
             async_client.fetch,sa_url) 
 
