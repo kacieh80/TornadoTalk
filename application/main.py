@@ -74,9 +74,9 @@ class StateHandler(tornado.web.RequestHandler):
 def scrub_it(response):
     clean = json.loads(response.body.decode("utf-8"))
     if "features" in clean:
-    	return clean["features"]
+        return clean["features"]
     else:
-    	return [clean["error"]]
+        return [clean["error"]]
 
 
 routes = [
