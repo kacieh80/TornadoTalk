@@ -27,7 +27,7 @@ Now you have an api key that you can put into application/main.py for the api_ke
 * pip
 * virturalenv
 
-#Windows users:
+##Windows users:
 
 ####Get Git
 http://windows.github.com/
