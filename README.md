@@ -20,27 +20,12 @@ This hits googles maps API to demonstrate the asynchronous abilities of Python T
 * Select "Browser Key"
 * Click "Create" (Leaving the text box blank)
 
-Now you have an api key that you can put into application/main.py for the api_key variable. If you are on Windows and are not setup w/ Python or virtualenv, please follow the instructions further down this page. For the mac and linux users these things are fairly simple to install:
+##Mac/Linux
+Now you have an api key that you can put into application/main.py for the api_key variable. If you are on Windows and For the mac and linux users these things are fairly simple to install:
 
 * Python3
 * pip
 * virturalenv
-
-##Instructions:
-
-Clone this repo letting it make default folder of  TornadoTalk
-
-```
-virtualenv TornadoTalk
-cd TornadoTalk
-source bin/activate
-pip install tornado
-```
-Now edit application/main.py to have your api key
-
-To start the application up simply type: python applicaton/main.py
-
-go to localhost:8000
 
 #Windows users:
 
@@ -78,5 +63,34 @@ Assuming this all went successful type:
 pip install virtualenv
 ```
 
+#Instructions:
+
+Clone this repo letting it make default folder of  TornadoTalk
+
+```
+#For Mac and Linux users
+virtualenv TornadoTalk
+cd TornadoTalk
+source bin/activate
+pip install tornado
+```
+
+```
+#For Windows
+virtualenv TornadoTalk
+cd TornadoTalk
+Scripts/activate.bat
+pip install tornado
+```
+
+Now edit application/main.py to have your api key
+
+To start the application up simply type: 
+
+```
+python applicaton/main.py
+```
+
+go to localhost:8000
 
 
