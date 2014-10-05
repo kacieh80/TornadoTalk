@@ -1,13 +1,14 @@
 import tornado.ioloop
 import tornado.web
 from tornado.httpclient import AsyncHTTPClient
+from tornado.httpclient import HTTPRequest
 from tornado import gen
 import json
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-api_key = "YOUR KEY HERE"
+api_key = "AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA"
 states = {
             "NSW": "New South Whales", 
             "QLD": "Queensland", 
@@ -39,9 +40,10 @@ class StatesHandler(tornado.web.RequestHandler):
 
         output = []
         for k,v in states.items():
-            logger.info("Getting {0}".format(k))
             task = gen.Task(self.get_state_data, k, async_client)
             output.append(task)
+
+        logger.info(output)
 
         results = yield output
         results = dict(results)
@@ -51,6 +53,7 @@ class StatesHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get_state_data(self, state, client):
         url = api_url.format(api_key, state)
+        logger.info("Getting {0}".format(state))
         output = yield gen.Task(client.fetch, url)
         logger.info("Got {0}".format(state))
         return (state.lower(), scrub_it(output))
@@ -61,8 +64,12 @@ class StateHandler(tornado.web.RequestHandler):
     def get(self, abbv):
         st = abbv.upper()
         url = "https://www.googleapis.com/mapsengine/v1/tables/12421761926155747447-06672618218968397709/features?version=published&key={0}&where=State='{1}'".format(api_key, st)
+        request = HTTPRequest(
+            url=url,
+            method="GET"
+        )
         response = yield gen.Task(
-            AsyncHTTPClient().fetch,url)
+            AsyncHTTPClient().fetch,request)
 
         clean_response = scrub_it(response)
 
@@ -82,7 +89,7 @@ def scrub_it(response):
 routes = [
     (r"/", MainHandler),
     (r"/states", StatesHandler),
-    (r"/state/(.*)", StateHandler)
+    (r"/states/(.*)", StateHandler)
 ]
 
 application = tornado.web.Application(routes, debug=True)
