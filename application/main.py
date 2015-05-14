@@ -8,7 +8,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-api_key = "AIzaSyCoV5gw7diiTdKznvnWTMMIjGYoIRFXPAA"
+api_key = ""
 states = {
             "NSW": "New South Whales", 
             "QLD": "Queensland", 
