@@ -93,4 +93,6 @@ python applicaton/main.py
 
 go to localhost:8000
 
+Slides: https://docs.google.com/presentation/d/1G8SRlAE2nzENeBZezL1MTRPdigTFmUa1NNYkV3mGqvw/edit#slide=id.p
+
 
