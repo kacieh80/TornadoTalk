@@ -4,9 +4,9 @@ TornadoTalk
 This hits googles maps API to demonstrate the asynchronous abilities of Python Tornado Web Server
 
 
-##Requirements:
+## Requirements:
 
-###Google API Key:
+### Google API Key:
 
 * Log in to your google account and go here: https://console.developers.google.com/project
 * Create a new project
@@ -20,23 +20,23 @@ This hits googles maps API to demonstrate the asynchronous abilities of Python T
 * Select "Browser Key"
 * Click "Create" (Leaving the text box blank)
 
-##Mac/Linux
+## Mac/Linux
 Now you have an api key that you can put into application/main.py for the api_key variable. If you are on Windows and For the mac and linux users these things are fairly simple to install:
 
 * Python3
 * pip
 * virturalenv
 
-##Windows users:
+## Windows users:
 
-####Get Git
+#### Get Git
 http://windows.github.com/
 
-####Get Python
+#### Get Python
 * If you don't already have python scroll to the bottom here: http://www.python.org/download/releases/3.3.5/ 
 * Then download the: Windows x86 MSI installer
 
-####Make it run from command line (Windows 8 - if less than Windows 8 find out how to edit your environment variables)
+#### Make it run from command line (Windows 8 - if less than Windows 8 find out how to edit your environment variables)
 * Search Control Panel for 'environment variables' and click to edit them
 * Follow the instructions here to add your Python folder: http://docs.python.org/2/using/windows.html#finding-the-python-executable
 * Go ahead and add <your python folder>/Scripts to your environment variables as well
@@ -63,7 +63,7 @@ Assuming this all went successful type:
 pip install virtualenv
 ```
 
-#Instructions:
+# Instructions:
 
 Clone this repo letting it make default folder of  TornadoTalk
 
